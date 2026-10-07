@@ -23,10 +23,10 @@ cat** is the default buddy; switch any time with right-click → **Character** (
 - **First-run tutorial.** A quick guided tour on first launch (Next → Next → Got it); replay it from right-click →
   **Show tutorial**.
 
-> **Personal use only.** Iron Man is a Marvel character and his pose is a likeness of that character. Bro (Denim),
-> Biscuit and the other buddies were made with AI image and video tools, just for fun. Don't publish or redistribute
-> builds that contain them. This repository and its releases are private: friends and family need to be invited
-> (repo **Settings → Collaborators**) and signed in to GitHub to download.
+> **Personal, non-commercial fan project.** Iron Man is a Marvel character and his pose is a likeness of that
+> character; Bro is not affiliated with or endorsed by Marvel or Disney. Bro (Denim), Biscuit and the other buddies
+> were made with AI image and video tools, just for fun. Don't sell or redistribute builds that contain Iron Man.
+> Bro ships with no API keys.
 
 ## Install
 
