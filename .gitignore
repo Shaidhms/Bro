@@ -1,0 +1,10 @@
+build/
+dist/
+*.key
+.env
+__pycache__/
+.DS_Store
+windows/stickers/
+windows/bro.ico
+guide/
+Bro-Desktop-Companion-Guide.pdf
