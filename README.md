@@ -37,9 +37,14 @@ cat** is the default buddy; switch any time with right-click → **Character** (
 1. Download `Bro-1.0.dmg` from [Releases](../../releases/latest), open it and drag **Bro** into **Applications**.
 2. Open Bro from Applications.
 
-The app is **not code-signed with a paid Apple certificate**, so the first launch shows a warning. If macOS says it
-*"could not verify"* Bro, click **Done**, then go to **System Settings → Privacy & Security**, scroll to
-*"Bro was blocked…"* and click **Open Anyway**. After that it opens normally.
+**First launch (one time only).** macOS blocks Bro the first time (the app isn't signed with a paid Apple
+certificate, that's why):
+
+1. Double-click **Bro**. macOS says it *"could not verify"* Bro. Click **Done**.
+2. Open **System Settings → Privacy & Security**.
+3. Scroll down to *"Bro was blocked…"* and click **Open Anyway**.
+4. In the pop-up, click **Open Anyway** / **OK** and enter your **Mac password**.
+5. Bro opens. After this he opens normally every time.
 
 The first time you open YouTube or a streaming site, macOS asks *"Bro wants to control Google Chrome / Safari"*.
 Click **OK**, or he can't see your tabs. Works with Google Chrome, Safari, Brave and Arc.

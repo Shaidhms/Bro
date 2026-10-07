@@ -6,12 +6,12 @@ INSTALL
 2. Open Applications and double-click Bro.
 
 FIRST OPEN (one time only)
-Bro isn't from the App Store, so macOS asks you to confirm the first time:
+macOS blocks Bro the first time (the app isn't signed with a paid Apple certificate, that's why):
 1. Double-click Bro. macOS says it "could not verify" Bro. Click Done.
 2. Open System Settings → Privacy & Security.
 3. Scroll down to "Bro was blocked…" and click "Open Anyway".
-4. Enter your Mac password, then click "Open".
-After that, Bro opens normally.
+4. In the pop-up, click "Open Anyway" / "OK" and enter your Mac password.
+5. Bro opens. After this he opens normally every time.
 
 (Alternative for Terminal users:  xattr -dr com.apple.quarantine /Applications/Bro.app )
 
