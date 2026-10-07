@@ -1,6 +1,6 @@
 # Bro 😎
 
-A cartoon desktop buddy for **macOS** who lives on your screen, walks around, reminds you to drink water, keeps you
+A cartoon desktop buddy for **macOS and Windows** who lives on your screen, walks around, reminds you to drink water, keeps you
 off YouTube, Instagram and OTT sites when you've had enough, tidies your folders and chats with you. **Biscuit the
 cat** is the default buddy; switch any time with right-click → **Character** (Bro (Denim), Iron Man, Drop or Buddy).
 
@@ -32,7 +32,9 @@ cat** is the default buddy; switch any time with right-click → **Character** (
 | Your computer | File |
 |---|---|
 | Mac with Apple Silicon (M1/M2/M3/M4…) or Intel, macOS 13 Ventura or newer | `Bro-1.0.dmg` |
-| Windows 10/11 | Coming soon |
+| Windows 10/11 (64-bit) | `Bro-1.0-Windows.exe` |
+
+### Mac
 
 1. Download `Bro-1.0.dmg` from [Releases](../../releases/latest), open it and drag **Bro** into **Applications**.
 2. Open Bro from Applications.
@@ -48,6 +50,18 @@ certificate, that's why):
 
 The first time you open YouTube or a streaming site, macOS asks *"Bro wants to control Google Chrome / Safari"*.
 Click **OK**, or he can't see your tabs. Works with Google Chrome, Safari, Brave and Arc.
+
+### Windows
+
+1. Download `Bro-1.0-Windows.exe` from [Releases](../../releases/latest) and save it somewhere you'll keep it
+   (for example **Documents**). There's nothing to install: double-click it and Bro appears.
+2. **First launch (one time only).** Windows SmartScreen may say *"Windows protected your PC"* (the app isn't signed
+   with a paid certificate, that's why). Click **More info → Run anyway**. After this he opens normally every time.
+3. To start him automatically, right-click Bro → **Settings** → tick **Start Bro when Windows starts** → **Save**.
+   Don't move the `.exe` after that.
+
+On Windows he watches the tab title in Chrome, Edge, Brave, Firefox, Opera, Vivaldi and Arc. When he hides, click
+the little **Bro** pill at the bottom-right of the screen to bring him back (it shows the time left).
 
 ## How to use him
 
@@ -69,7 +83,7 @@ Right-click Bro → **Settings…**. Changes apply straight away:
 - **Screen time:** ask how much time you need, the time choices, the default if you don't answer, water reminder interval
 - **Agentic chat:** provider, model and your own API key
 
-Everything is stored in `~/Library/Application Support/Bro/`: `config.json` for settings, `stickers/` for the
+Everything is stored in `~/Library/Application Support/Bro/` (Mac) or `%APPDATA%\Bro\` (Windows): `config.json` for settings, `stickers/` for the
 characters and `ai.key` for your API key (readable only by you). Bro ships with **no API keys**.
 
 ## Characters
@@ -104,6 +118,10 @@ FPS=24 ./import-character.sh biscuit ~/Downloads/biscuit-poses   # turn images/c
 
 `import-character.sh` removes backgrounds on-device with Apple Vision and turns `.mp4` clips into frame folders.
 
+**Windows build:** run `./windows/pack_assets.sh` on the Mac (turns the characters into WebP frames and makes
+`bro.ico`), copy the `windows/` folder to a Windows PC with Python 3.11+, and double-click `build_windows.bat`.
+It produces `windows\dist\Bro.exe`.
+
 ## Project layout
 
 ```
@@ -116,7 +134,7 @@ Sources/Effects.swift   poof / sparkle effects
 Sources/Edition.swift   personal vs share build, offline brain
 tools/                  background cutout, sticker packing, app icon
 characters/PROMPTS.md   prompts for making new characters
-windows/                Windows version (in progress)
+windows/                Windows version (Python + tkinter, built into one Bro.exe with PyInstaller)
 share/                  READ ME FIRST that goes inside the DMG
 ```
 
