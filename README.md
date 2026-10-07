@@ -23,10 +23,9 @@ cat** is the default buddy; switch any time with right-click → **Character** (
 - **First-run tutorial.** A quick guided tour on first launch (Next → Next → Got it); replay it from right-click →
   **Show tutorial**.
 
-> **Personal, non-commercial fan project.** Iron Man is a Marvel character and his pose is a likeness of that
-> character; Bro is not affiliated with or endorsed by Marvel or Disney. Bro (Denim), Biscuit and the other buddies
-> were made with AI image and video tools, just for fun. Don't sell or redistribute builds that contain Iron Man.
-> Bro ships with no API keys.
+> **Personal, non-commercial fan project.** The characters are likenesses of actor Vijay (Bro (Denim)) and of
+> Marvel's Iron Man. Bro is not affiliated with or endorsed by Vijay, Marvel or Disney. The buddies were made with AI
+> image and video tools, just for fun. Don't sell or redistribute builds that contain them. Bro ships with no API keys.
 
 ## Install
 
