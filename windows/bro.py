@@ -469,11 +469,10 @@ class Bro:
 
         self.raw = {}                            # (pose, mirror) -> [PIL image]   (prepared off the UI thread)
         self.photos = {}                         # (pose, mirror) -> [PhotoImage]
-        self.load_character(self.cfg["character"], wait_for_all=False)
+        self.load_character(self.cfg["character"])
 
         l, t, r, b = work_area()
         self.x, self.y = r - self.box_w - int(40 * self.k), b - self.box_h
-        self.place()
 
         self.anim_job = self.move_job = self.water_job = self.bubble_job = None
         self.busy = False                        # walking / smashing
@@ -496,6 +495,7 @@ class Bro:
         self.pill = None
         self.settings = None
         self.tutorial_step = None
+        self.place()                             # after the state above: place() looks at self.bubble
 
         self.label.bind("<ButtonPress-1>", self.on_press)
         self.label.bind("<B1-Motion>", self.on_drag)
@@ -530,7 +530,7 @@ class Bro:
         return work_area()
 
     # ---- character frames
-    def load_character(self, name, wait_for_all=True):
+    def load_character(self, name):
         info = character_info(name)
         self.fps = float(info.get("fps") or 24)
         self.walk_right = bool(info.get("walkFacesRight", True))
@@ -546,10 +546,8 @@ class Bro:
             for pose, mirror in jobs:
                 if (pose, mirror) not in raw:
                     raw[(pose, mirror)] = [fit_frame(f, self.box_w, self.box_h, mirror) for f in files[pose]]
-        t = threading.Thread(target=work, daemon=True)
-        t.start()
-        if wait_for_all:
-            t.join()
+        # never join this thread: freeing old frames needs the Tk thread, so waiting here would deadlock
+        threading.Thread(target=work, daemon=True).start()
 
     def frames(self, pose, mirror=False):
         key = (pose, mirror)
@@ -873,17 +871,21 @@ class Bro:
         self.update_pill()
 
     def update_pill(self):
-        if not self.pill:
+        pill, label = self.pill, getattr(self, "pill_label", None)
+        if not pill:
             return
         if self.session_budget is not None:
             left = max(0, int(self.session_budget - self.distracted))
             text = f"Bro  {left // 60}:{left % 60:02d}"
         else:
             text = "Bro  (click to show)"
-        self.pill_label.config(text=text)
-        self.pill.update_idletasks()
-        l, t, r, b = self.sw()
-        self.pill.geometry(f"+{r - self.pill.winfo_reqwidth() - int(16 * self.k)}+{b - self.pill.winfo_reqheight() - int(12 * self.k)}")
+        try:
+            label.config(text=text)
+            pill.update_idletasks()
+            l, t, r, b = self.sw()
+            pill.geometry(f"+{r - pill.winfo_reqwidth() - int(16 * self.k)}+{b - pill.winfo_reqheight() - int(12 * self.k)}")
+        except tk.TclError:                       # the pill was closed meanwhile
+            pass
 
     # ---- tutorial
     def tutorial_steps(self):
